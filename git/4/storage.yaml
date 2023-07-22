@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-storage-volume
+  labels:
+    app: postres
+spec:
+  storageClassName: csi-ceph-hdd-gz1-retain
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/var/lib/postgresql/data"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-storage-claime
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: csi-ceph-hdd-gz1-retain
+  resources:
+    requests:
+      storage: 10Gi
+
