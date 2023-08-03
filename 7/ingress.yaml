@@ -1,0 +1,20 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: prometheus.185.130.113.91.nip.io 
+      http:
+        paths:
+        - path: / 
+          pathType: Prefix
+          backend:
+            service:
+              name:  prometheus
+              port: 
+                number: 8080
+            
